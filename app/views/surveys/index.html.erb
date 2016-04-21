@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="questionnaires_<%= action_name %>">
+    <h1>
+      Test
+    </h1>
+    <hr>
+      
+    <% if @surveys.empty? %>
+    
+      <p> There are no surveys </p>
+      
+    <% else %>
+      <p>
+      <% if can? :all, current_user %>
+        Filter by type:
+        <%= render 'survey_label_all' %>
+        <%= render partial: 'survey_label', collection: get_survey_types.keys, as: :survey_type, locals: { with_badges: true } %>
+      </p>
+      <%end%>
+      <table class='table table-nonfluid survey-table'>
+        <thead>
+          <tr>
+            <% if can? :all, current_user %>
+            <th></th>
+            <%end%>
+            <th>Name</th>
+              <% if can? :all, current_user %>
+            <th>Description</th>
+            <th>Questions</th>
+            <th>Participants</th>
+            <th></th>
+            <%end%>
+          </tr>
+        </thead>
+        <tbody>
+
+          <%= render partial: 'survey', collection: @surveys %>
+        </tbody>
+      </table>
+      <%= paginate @surveys %>
+   
+      <% end %>
+     
+  </div>
+</div>
