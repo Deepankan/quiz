@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     
   #   root_path
   # end  
+   # def timeout_in
+   #  binding.pry
+   #  1.minute
+   # end   
   protected
  
   #derive the model name from the controller. egs UsersController will return User

@@ -27,10 +27,12 @@
               <li> <%= link_to 'Opinion Poll', new_survey_path(type: 'poll') %> </li>
               <li> <%= link_to 'Quiz', new_survey_path(type: 'quiz') %> </li>
               <li> <%= link_to 'Score Survey', new_survey_path(type: 'score') %> </li>
+              <li><!-- <#%= countdown Time.now  %> --></li>
             </ul>
           </li>
         </ul>
         <%end%>
+        <div id="countdowntimer"><span id="ms_timer"><span></div>
         <% if current_user %>
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -55,3 +57,12 @@
   </div>
   <%= render 'shared/gem_header_info' %>
 </header>
+ <script type="text/javascript">
+$(function(){
+  $("#ms_timer").countdowntimer({
+                 minutes : 30,
+                seconds : 00
+             
+  });
+});
+ </script>

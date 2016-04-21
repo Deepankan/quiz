@@ -67,6 +67,8 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
+    countdown (0.1.0)
+      json
     daemons (1.2.3)
     debug_inspector (0.0.2)
     devise (4.0.0)
@@ -235,6 +237,7 @@ DEPENDENCIES
   cancan
   client_side_validations!
   coffee-rails (~> 4.1.0)
+  countdown
   devise
   jbuilder (~> 2.0)
   jquery-rails

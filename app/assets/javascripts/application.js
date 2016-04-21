@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require rails.validations
+//= require jquery-2.0.3
+//= require jquery.countdownTimer
 //= require_tree .
