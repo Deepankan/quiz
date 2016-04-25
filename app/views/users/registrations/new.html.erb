@@ -24,11 +24,13 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
-  <%= f.hidden_field :user_type, :value =>  "client"%>
-  <%= f.hidden_field :role_id, :value =>  "client"%>
+  <%= f.hidden_field :user_type, :value =>  CLIENT%>
+  <%= f.hidden_field :role_id, :value =>  CLIENT%>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
+
 
 <%= render "users/shared/links" %>

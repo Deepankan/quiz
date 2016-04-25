@@ -18,13 +18,13 @@ class AttemptsController < ApplicationController
     #@participant = current_user
     @participant = current_user
     @user = current_user
-    unless @survey.nil?
-      
-      if @survey.attempts.count >= @survey.attempts_number 
-        redirect_to root_path, alert: "Not Allowed.You have already submitted your paper"
-      end  
-      @attempt = @survey.attempts.new
-      @attempt.answers.build
+    if @user.score.nil?
+      unless @survey.nil?   
+        @attempt = @survey.attempts.new
+        @attempt.answers.build
+      end
+    else
+      redirect_to root_path, alert: "Not Allowed.You have already submitted your paper and your mark was #{current_user.score}"
     end
   end
 
@@ -34,6 +34,7 @@ class AttemptsController < ApplicationController
    
     if @attempt.valid? && @attempt.save
       correct_options_text = @survey.correct_options.present? ? 'Bellow are the correct answers marked in green' : ''
+      current_user.update(score: @attempt.score)
       redirect_to root_path, notice: "Thank you for answering #{@survey.name}! Your marks is  #{@attempt.score}"
     else
       build_flash(@attempt)   

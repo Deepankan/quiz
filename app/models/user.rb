@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
    # def timeout_in
    #   2.minutes 
    # end
-   # def timeout_in
-   # 	binding.pry
-   # 	1.minute
-   # end	
+   def timeout_in
+   	
+   	if self.user_type == CLIENT
+     MAX_TIME.minutes
+    end  
+   end	
 end

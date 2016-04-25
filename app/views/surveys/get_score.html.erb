@@ -1,0 +1,52 @@
+  <% if can? :all, current_user %>
+<div class="container">
+
+  <div class="questionnaires_<%= action_name %>">
+    <h1>
+       User Score
+    </h1>
+    <hr>
+      
+    <% if @score.empty? %>
+    
+      <p> There are no score for any user </p>
+      <%else%>
+      <p>Total No of User :  <%= @score.count%></p>
+      
+      <table class='table table-nonfluid survey-table'>
+        <thead>
+          <tr>
+           
+            <th></th>         
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th></th>
+         
+          </tr>
+        </thead>
+        <tbody>
+       
+        <%@score.each do |k|%>
+           <tr>
+            <td></td>
+            <td><%= k.name%></td>
+            <td><%= k.email%></td>
+            <td><b style="color: red;"><%= k.score%></b></td>
+            <td></td>
+           </tr>
+        <%end%>   
+       
+        </tbody>
+      </table>
+      <%= paginate @score %>
+   <%end%>
+      
+     
+  </div>
+</div>
+<%else%>
+<b>Sorry Not Allowed to access this page.</b>
+<%= link_to "Home", root_path%>
+ <%end%>     
+

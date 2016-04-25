@@ -36,6 +36,8 @@ gem 'pry'
 gem "cancan"
 gem 'thin'
 gem 'countdown'
+gem 'time_difference', '~> 0.4.2'
+gem  'time_diff'
 #gem 'jquery-countdown-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

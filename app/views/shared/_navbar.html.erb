@@ -1,4 +1,8 @@
 <header>
+
+<% time = Time.diff(Time.parse(session['time'].to_s), Time.parse(Time.now.to_s)) %>
+<%@minute  = time[:minute]%>
+<%@second  = time[:second]%>
   <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -17,24 +21,30 @@
         <% if can? :all, current_user %>
           <li class="<%= is_active?(surveys_path) %>">
             <%= link_to surveys_path do %>
-              All surveys
+              All Test
               <span class='badge'> <%= surveys_count %> </span>
             <% end -%>
           </li>
           <li class="dropdown <%= is_active?(new_survey_path) %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New survey <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li> <%= link_to 'Opinion Poll', new_survey_path(type: 'poll') %> </li>
-              <li> <%= link_to 'Quiz', new_survey_path(type: 'quiz') %> </li>
-              <li> <%= link_to 'Score Survey', new_survey_path(type: 'score') %> </li>
+              <!-- <li> < %= link_to 'Opinion Poll', new_survey_path(type: 'poll') %> </li> -->
+              <li> <%= link_to 'Create Test', new_survey_path(type: 'quiz') %> </li>
+              <li> <%= link_to 'Score Check', get_score_path %> </li>
               <li><!-- <#%= countdown Time.now  %> --></li>
             </ul>
           </li>
         </ul>
+        
+        
         <%end%>
-        <div id="countdowntimer"><span id="ms_timer"><span></div>
+
+        
         <% if current_user %>
           <ul class="nav navbar-nav navbar-right">
+           <%if current_user.user_type == CLIENT%>
+             <li><div id="countdowntimer"><span id="ms_timer"><span></div></li>
+           <%end%>  
             <li>
               <p class="navbar-text">
                 Logged in as:
@@ -60,8 +70,8 @@
  <script type="text/javascript">
 $(function(){
   $("#ms_timer").countdowntimer({
-                 minutes : 30,
-                seconds : 00
+                 minutes : '<%= @minute%>',
+                seconds : '<%= @second%>'
              
   });
 });

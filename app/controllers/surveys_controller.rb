@@ -8,7 +8,11 @@ class SurveysController < ApplicationController
     @surveys = query.order(created_at: :desc).page(params[:page]).per(15)
     @surveys = @surveys.where(:active => true) if current_user.user_type == "client" 
   end
-
+  def get_score
+    
+    @score = User.where(user_type: CLIENT)
+    @score = @score.page(params[:page]).per(15)
+  end
   def new
     @survey = Survey::Survey.new(survey_type: view_context.get_survey_type(params[:type]))
   end

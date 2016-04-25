@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   def create
-    binding.pry
+    
     session[:user_id] = User.create(user_params).id
     redirect_to :back
   end
-
+  
   def change_name
     @user = User.find(params[:id])
     @user.update(user_params)
@@ -14,4 +14,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name)
   end
+
 end

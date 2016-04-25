@@ -208,6 +208,11 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    time_diff (0.3.0)
+      activesupport
+      i18n
+    time_difference (0.4.2)
+      activesupport
     turbolinks (2.5.3)
       coffee-rails
     twitter-bootstrap-rails (3.2.2)
@@ -258,6 +263,8 @@ DEPENDENCIES
   survey
   therubyracer
   thin
+  time_diff
+  time_difference (~> 0.4.2)
   turbolinks
   twitter-bootstrap-rails
   uglifier (>= 1.3.0)

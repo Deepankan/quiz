@@ -1,3 +1,4 @@
+  <% if can? :all, current_user %>
 <div class="container">
   <h2>
     Edit Survey
@@ -5,3 +6,7 @@
   </h2>
   <%= render 'form' %>
 </div>
+<%else%>
+<b>Sorry Not Allowed to access this page.</b>
+<%= link_to "Home", root_path%>
+<%end%>

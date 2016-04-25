@@ -8,12 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :update_sanitized_params, if: :devise_controller?
   
    
-   def after_sign_up_path_for(resource)
-      
-      
-      cookies[:submit] = 'true'
-      root_path 
-    end
+   
    def update_sanitized_params
 
     params[:user][:role_id] = Role.find_by_name(params[:user][:role_id]).id if params[:user] && params[:controller] == "devise/registrations"
@@ -29,6 +24,13 @@ class ApplicationController < ActionController::Base
    #  binding.pry
    #  1.minute
    # end   
+
+     def after_sign_in_path_for(resource)
+      time =  
+      session['time'] = MAX_TIME.minutes.from_now
+      root_path
+     end
+
   protected
  
   #derive the model name from the controller. egs UsersController will return User
@@ -44,4 +46,5 @@ class ApplicationController < ActionController::Base
   def load_permissions
     @current_permissions = current_user.role.permissions.collect{|i| [i.subject_class, i.action]}
   end
+
 end

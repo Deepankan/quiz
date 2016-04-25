@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :users
 
   #root 'surveys#index'
+  get 'surveys/get_score' => 'surveys#get_score' , :as => "get_score"
   resources 'surveys'
   resources 'attempts'
   resources 'users', only: [:create]
