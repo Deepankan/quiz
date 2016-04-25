@@ -35,7 +35,7 @@ class AttemptsController < ApplicationController
     if @attempt.valid? && @attempt.save
       correct_options_text = @survey.correct_options.present? ? 'Bellow are the correct answers marked in green' : ''
       current_user.update(score: @attempt.score)
-      redirect_to root_path, notice: "Thank you for answering #{@survey.name}! Your marks is  #{@attempt.score}"
+      redirect_to root_path, notice: "Thank you for answering #{current_user.name}! Your marks is  #{@attempt.score}"
     else
       build_flash(@attempt)   
       @participant = current_user
