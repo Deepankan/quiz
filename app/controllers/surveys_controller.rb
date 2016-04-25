@@ -10,7 +10,7 @@ class SurveysController < ApplicationController
   end
   def get_score
     
-    @score = User.where(user_type: CLIENT)
+    @score = User.where(user_type: CLIENT).order(:score)
     @score = @score.page(params[:page]).per(15)
   end
   def new
