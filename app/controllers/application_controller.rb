@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
    # end   
 
      def after_sign_in_path_for(resource)
-      time =  
+    
       session['time'] = MAX_TIME.minutes.from_now
       root_path
      end

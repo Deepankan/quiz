@@ -29,6 +29,7 @@ class AttemptsController < ApplicationController
   end
 
   def create
+
     @attempt = @survey.attempts.new(params_whitelist)
     @attempt.participant = current_user
    

@@ -1,8 +1,6 @@
 <header>
 
-<% time = Time.diff(Time.parse(session['time'].to_s), Time.parse(Time.now.to_s)) %>
-<%@minute  = time[:minute]%>
-<%@second  = time[:second]%>
+
   <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -68,11 +66,5 @@
   <%= render 'shared/gem_header_info' %>
 </header>
  <script type="text/javascript">
-$(function(){
-  $("#ms_timer").countdowntimer({
-                 minutes : '<%= @minute%>',
-                seconds : '<%= @second%>'
-             
-  });
-});
+$("#countdowntimer").hide();
  </script>

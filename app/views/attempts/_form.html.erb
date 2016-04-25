@@ -1,8 +1,11 @@
+<% time = Time.diff(Time.parse(session['time'].to_s), Time.parse(Time.now.to_s)) %>
+<%@minute  = time[:minute]%>
+<%@second  = time[:second]%>
 <h2 class="survey-title">
   <%= @survey.name %>
   <p><small><%= @attempt.survey.description %></small></p>
 </h2>
-<%= form_for(@attempt, url: attempt_scope(@attempt)) do |f| %>
+<%= form_for(@attempt, url: attempt_scope(@attempt), html: {id: "submit_answer"}) do |f| %>
   <%= hidden_field_tag :survey_id, @survey.id %>
   <ol class="questions">
     <%= f.fields_for :answers, get_answer_fields(@attempt) do |answer_fields| %>
@@ -19,5 +22,31 @@
       </li>
     <% end -%>
   </ol>
-  <%= f.submit "Submit", class: 'btn btn-default' %>
+  <%= f.submit "Submit",:id =>  "subnit", class: 'btn btn-default' %>
 <% end -%>
+<script type="text/javascript">
+// for (; 1;) {
+//     if($('#ms_timer').text() == "00:00"){ 
+//       alert(0);
+//        $('#submit_answer').trigger('click')
+//     }
+// }
+$(".icon-logout").hide()
+$("#countdowntimer").show();
+window.setInterval(function(){
+      if($('#ms_timer').text() == "00:00"){ 
+      
+       $('#subnit').trigger('click')
+       $('#ms_timer').text("Time Over")
+       $(".icon-logout").show()
+    }
+}, 1000);
+ 
+ $(function(){
+  $("#ms_timer").countdowntimer({
+                 minutes : '<%= @minute%>',
+                seconds : '<%= @second%>'
+             
+  });
+});
+</script>>
